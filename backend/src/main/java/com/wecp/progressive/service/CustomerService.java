@@ -6,16 +6,17 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerService {
-    List<Customers> getAllCustomers() throws SQLException;
-    int addCustomer(Customers customers) throws SQLException;
-    List<Customers> getAllCustomersSortedByName() throws SQLException;
-    default public void emptyArrayList() {}
+// The methods mentioned below have to be used for JDBC interactions with the database.
+List<Customers> getAllCustomers() throws SQLException;
+Customers getCustomerById(int customerId) throws SQLException;
+int addCustomer(Customers customers) throws SQLException;
+void updateCustomer(Customers customers) throws SQLException;
+void deleteCustomer(int customerId) throws SQLException;
+List<Customers> getAllCustomersSortedByName() throws SQLException;
 
-    //Do not implement these methods in CustomerServiceImplArraylist.java class
-    default void updateCustomer(Customers customers) throws SQLException {}
-    default void deleteCustomer(int customerId) throws SQLException {}
-    default Customers getCustomerById(int customerId) throws SQLException {
-        return null;
-    }
-
+// The methods mentioned below have to be used for storing and manipulating data in an ArrayList.
+List<Customers> getAllCustomersFromArrayList();
+List<Customers> addCustomersToArrayList(Customers customers);
+List<Customers> getAllCustomersSortedByNameFromArrayList();
+void emptyArrayList();
 }
